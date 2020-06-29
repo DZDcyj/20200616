@@ -33,33 +33,63 @@ public class CommunityServlet extends HttpServlet {
             List<Discussion> discussions = discussionDao.selectAll();
             getDisList(jsonArray, discussions);
         }
+
         if(type.equals("comment")){
             CommentDaoImpl commentDao = new CommentDaoImpl();
 
-            List<Comment> comments = commentDao.selectAll();
-
-            for(Comment comment:comments){
-                JSONObject jo = new JSONObject();
-                jo.put("discussion_id",comment.getDiscussion_id());
-                jo.put("comment_id",comment.getComment_id());
-                jo.put("comment_content",comment.getComment_content());
-                jo.put("comment_responder_id",comment.getComment_responder_id());
-                jo.put("comment_img_url","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
-                jsonArray.add(jo);
-            }
+            getCommentList(jsonArray, commentDao);
         }
+
         if(type.equals("searchResult")){
             DiscussionDaoImpl discussionDao = new DiscussionDaoImpl();
             String name = req.getParameter("name");
             List<Discussion> discussions = discussionDao.searchDiscussion(name);
             getDisList(jsonArray, discussions);
         }
+
+        if(type.equals("community_new_comment")){
+
+            String id = req.getParameter("discussion_id");
+            System.out.println(id);
+            long discussion_id = Integer.parseInt(id);
+
+            CommentDaoImpl commentDao = new CommentDaoImpl();
+            List<Comment> list = commentDao.search(discussion_id);
+            String info = req.getParameter("info");
+
+
+            Comment comment = new Comment();
+
+            comment.setComment_id(list.size()+1);
+            comment.setDiscussion_id(discussion_id);
+            comment.setComment_content(info);
+            comment.setComment_responder_id(10);
+
+            commentDao.insert(comment);
+
+            getCommentList(jsonArray, commentDao);
+        }
+
         System.out.println("JSON语句为："+jsonArray);
         System.out.println("发出信息：");
         System.out.println(jsonArray.toString());
         Writer out = resp.getWriter();
         out.write(jsonArray.toString());
         out.flush();
+    }
+
+    private void getCommentList(JSONArray jsonArray, CommentDaoImpl commentDao) {
+        List<Comment> comments = commentDao.selectAll();
+
+        for(Comment comment:comments){
+            JSONObject jo = new JSONObject();
+            jo.put("discussion_id",comment.getDiscussion_id());
+            jo.put("comment_id",comment.getComment_id());
+            jo.put("comment_content",comment.getComment_content());
+            jo.put("comment_responder_id",comment.getComment_responder_id());
+            jo.put("comment_img_url","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
+            jsonArray.add(jo);
+        }
     }
 
     private void getDisList(JSONArray jsonArray, List<Discussion> discussions) {
@@ -71,6 +101,7 @@ public class CommunityServlet extends HttpServlet {
                 jo.put("discussion_name", discussion.getDiscussion_name());
                 jo.put("discussion_title_img_url", discussion.getDiscussion_title_img_url());
                 jo.put("discussion_content", discussion.getDescription());
+                jo.put("comment_img","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/LegalHigh01.png");
                 jsonArray.add(jo);
             }
         }

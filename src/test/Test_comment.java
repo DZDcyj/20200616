@@ -8,7 +8,7 @@ public class Test_comment {
         Comment comment = new Comment();
         CommentDaoImpl commentDao = new CommentDaoImpl();
 
-        comment.setDiscussion_id(4);
+        /*comment.setDiscussion_id(4);
         comment.setComment_id(1);
         comment.setComment_content("2伽马伊普西隆根号三");
         comment.setComment_responder_id(1);
@@ -34,6 +34,8 @@ public class Test_comment {
         comment.setComment_content("经验加三");
         comment.setComment_responder_id(4);
 
-        commentDao.insert(comment);
+        commentDao.insert(comment);*/
+        comment.setComment_responder_id(10);
+        commentDao.delete1(comment);
     }
 }
