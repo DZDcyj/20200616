@@ -1,0 +1,50 @@
+module.exports={
+
+}
+
+var comment= {
+    "id":2,
+    "data":[
+        {
+            "question_id":1,
+            "comment_id":1,
+            "comment_good":12,
+            "comment_bad":0,
+            "commenter_id":1,
+            "commenter_name":"李多朋",
+            "commenter_img":"../../images/头像.png",
+            "comment":"2伽马伊普西隆根号三",
+        },
+        {
+            "question_id":1,
+            "comment_id":2,
+            "comment_good":24,
+            "comment_bad":0,
+            "commenter_id":2,
+            "commenter_name":"刘子聿",
+            "commenter_img":"../../images/头像.png",
+            "comment":"经验+3",
+        },
+        {
+            "question_id":1,
+            "comment_id":3,
+            "comment_good":36,
+            "comment_bad":0,
+            "commenter_id":3,
+            "commenter_name":"王天梦",
+            "commenter_img":"../../images/头像.png",
+            "comment":"希腊奶",
+        },
+        {
+            "question_id":1,
+            "comment_id":4,
+            "comment_good":48,
+            "comment_bad":0,
+            "commenter_id":4,
+            "commenter_name":"李佳航",
+            "commenter_img":"../../images/头像.png",
+            "comment":"经验加三,",
+        }
+    ]
+}
+module.exports.comment = comment;

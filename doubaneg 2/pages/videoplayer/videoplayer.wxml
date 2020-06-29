@@ -1,0 +1,10 @@
+<!--pages/videoplayer/videoplayer.wxml-->
+<video src="{{arrays[0].course_video_url}}" style="video"></video>
+<text class="course_name_title">课程名称：</text>
+<text  class="couser_name">{{arrays[0].course_name}}</text>
+<view class="line"></view>
+<view class="course_brief" >课程简介</view>
+<view class="course_brief_content">{{arrays[0].course_description}}</view>
+<view class="line"></view>
+<view >为您推荐</view>
+<view ></view>

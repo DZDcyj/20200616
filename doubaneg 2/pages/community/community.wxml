@@ -1,0 +1,50 @@
+<view class="page">
+    <view class="community">
+        <scroll-view class="container"  scroll-y="true">
+        <view class="search" >
+            <view class="search_left" >
+                <image src="../../images/搜索.png"></image>
+                <input placeholder="搜索话题、问题或人" class="search_left_placeholder" bindinput="change">
+                </input>
+            </view>
+            <view class="search_right" >
+                    <image src="../../images/开始搜索.png" ></image>
+            </view>
+        </view>
+        <view class="write_btn">
+            <navigator bindtap="createDis" url="/pages/dislaunch/dislaunch">
+                <image  src="../../images/编写.png"  />
+            </navigator>
+        </view>
+
+        <block wx:for="{{questioner}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+        <view class="questioner_item">
+            <view class="questioner_source">
+                <navigator >
+                    <view >
+                        <image src="{{item.discussion_title_img_url}}" />
+                        <text >{{item.discussion_adminId}}</text>
+                    </view>
+
+                </navigator>
+                <view class="questioner_comment">
+                <view >
+                    <image src="{{item.comment_image}}" />
+                </view>
+            </view>
+            </view>
+            <view class="questioner_content">
+             <navigator url="/pages/community-comment/community-comment?question_id={{item.discussion_id}}">
+                <view class="question">
+                    {{item.discussion_name}}
+                </view>
+                <view class="description">
+                    <text >{{item.discussion_content}}</text>
+                </view>
+                </navigator>    
+            </view>
+        </view>      
+        </block>
+        </scroll-view>
+    </view>  
+</view>

@@ -1,0 +1,65 @@
+<view class="page">
+    <view class="community-comment">
+        <scroll-view class="container"  scroll-y="true">
+
+        <block  wx:for="{{discussions}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+            <view wx:if="{{item.discussion_id==question_id}}" class="questioner_item">
+                <view class="questioner_source">
+                    <navigator >
+                        <view >
+                            <image src="{{item.discussion_title_img_url}}" />
+                            <text >{{item.discussion_adminId}}</text>
+                        </view>
+                    </navigator>
+                    <view class="questioner_attention">
+                        <button class="attention_btn"> 关注</button>
+                    </view>
+                </view>
+                <view class="questioner_content">
+                    <view class="question">
+                        {{item.discussion_name}}
+                    </view>
+                    <view class="description">
+                        <text >{{item.discussion_content}}</text>
+                    </view>   
+                </view>
+            </view>      
+        </block>
+        <block wx:for="{{comment}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+            <view class="comment" wx:if="{{item.discussion_id==question_id}}">
+                <view class="comment_source">
+                    <navigator >
+                        <view >
+                            <image src="{{item.comment_img_url}}" />
+                            <text >{{item.comment_responder_id}}</text>
+                        </view>
+                    </navigator>
+                    <view class="comment_attention">
+                        <button class="attention_btn"> 关注</button>
+                    </view>
+                </view>
+                <view class="comment_content">  
+                    <view class="description">
+                        <text >{{item.comment_content}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+        </scroll-view>
+    
+    </view>
+
+    <view class="speak">
+        <view class="speak_left">
+            <input placeholder="请输入您的评论..." class="search_left_placeholder" bindinput="update_comment">
+            </input>
+        </view>
+        <view class="speak_right">
+                <image  bindtap="send" src="../../images/回复.png" />
+                <text >{{item.comment_num}}</text>
+                <image src="../../images/收藏.png" ></image>
+                <image src="../../images/分享.png" ></image>
+        </view>
+    </view>
+
+</view>
