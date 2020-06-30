@@ -23,9 +23,9 @@ public class Test_discussion {
         discussion.setDescription("在做等离子物理对撞实验的时候，如果把第三能量的极坐标，向负方向调整三个阿尔法单位，那么对最终结果将会产生多少影响？\",\n");
         discussion.setDiscussion_title_img_url("https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
 
-        discussionDao.update(discussion);
+        discussionDao.insert(discussion);
 
-        discussion.setDiscussion_id(2);
+        /*discussion.setDiscussion_id(2);
         discussion.setAdminId(2);
         discussion.setDiscussion_name("如何看待互联网大厂程序员因厌恶编程，辞去月薪2w+的工作去当司机？");
         discussion.setDescription("如题");
@@ -51,11 +51,9 @@ public class Test_discussion {
         /*comment.setComment_id(1);
         comment.setComment_responder_id(1);
         comment.setDiscussion_id(1);
-        comment.setComment_content("2伽马伊普西隆根号三");
+        comment.setComment_content("2伽马伊普西隆根号三");*/
 
-        commentDao.insert(comment);
-
-        reply.setComment_id(1);
+       /* reply.setComment_id(1);
         reply.setReply_id(1);
         reply.setReply_user_id(1);
         reply.setReply_content("苟利国家");

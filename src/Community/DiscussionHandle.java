@@ -1,8 +1,6 @@
 package Community;
 
-import User.User;
 import Utils.CommentDaoImpl;
-import Utils.CommentToDiscussionImpl;
 import Utils.DiscussionDaoImpl;
 
 import java.util.List;

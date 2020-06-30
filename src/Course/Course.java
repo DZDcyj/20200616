@@ -64,5 +64,4 @@ public class Course {
     public String getCourse_name() {
         return course_name;
     }
-
 }

@@ -1,13 +1,13 @@
 package Utils;
 
-
+import Course.Course;
 import User.User;
 
 import java.util.List;
 
 public interface UserDao {
     /**
-    *添加
+     *添加
      * */
     public int insert(User user);
 
@@ -25,5 +25,8 @@ public interface UserDao {
      * 查询
      * */
     public List<User> selectAll();
-
+    /**
+     * 模糊搜索
+     * */
+    public List<User> selectSomeUser(String name);
 }
