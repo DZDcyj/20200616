@@ -1,7 +1,10 @@
 package Community;
 
+import User.User;
 import Utils.CommentDaoImpl;
 import Utils.DiscussionDaoImpl;
+import Utils.UserDao;
+import Utils.UserDaoImpl;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -50,7 +53,7 @@ public class CommunityServlet extends HttpServlet {
         if(type.equals("community_new_comment")){
 
             String id = req.getParameter("discussion_id");
-            System.out.println(id);
+            System.out.println("——————————————————————————————————————开始创建新的评论——————————————————————————————————");
             long discussion_id = Integer.parseInt(id);
 
             CommentDaoImpl commentDao = new CommentDaoImpl();
@@ -60,10 +63,19 @@ public class CommunityServlet extends HttpServlet {
 
             Comment comment = new Comment();
 
-            comment.setComment_id(list.size()+1);
+            if(list != null){
+                comment.setComment_id(list.size()+1);
+            }
+            else{
+                comment.setComment_id(0);
+            }
             comment.setDiscussion_id(discussion_id);
             comment.setComment_content(info);
-            comment.setComment_responder_id(10);
+
+            String name = req.getParameter("discussion_adminName");
+            UserDaoImpl userDao = new UserDaoImpl();
+            User usr = userDao.findUserName(name);
+            comment.setComment_responder_id(usr.getUserId());
 
             commentDao.insert(comment);
 
@@ -80,24 +92,35 @@ public class CommunityServlet extends HttpServlet {
 
     private void getCommentList(JSONArray jsonArray, CommentDaoImpl commentDao) {
         List<Comment> comments = commentDao.selectAll();
+        UserDaoImpl userDao = new UserDaoImpl();
 
         for(Comment comment:comments){
             JSONObject jo = new JSONObject();
             jo.put("discussion_id",comment.getDiscussion_id());
+
             jo.put("comment_id",comment.getComment_id());
             jo.put("comment_content",comment.getComment_content());
             jo.put("comment_responder_id",comment.getComment_responder_id());
+            User user = userDao.findUserId(comment.getComment_responder_id());
+            if(user != null){
+                jo.put("comment_user_name",user.getUserName());
+            }
             jo.put("comment_img_url","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
             jsonArray.add(jo);
         }
     }
 
     private void getDisList(JSONArray jsonArray, List<Discussion> discussions) {
+        UserDaoImpl userDao = new UserDaoImpl();
         if(discussions != null) {
             for (Discussion discussion : discussions) {
                 JSONObject jo = new JSONObject();
                 jo.put("discussion_id", discussion.getDiscussion_id());
                 jo.put("discussion_adminId", discussion.getAdminId());
+                User user = userDao.findUserId(discussion.getAdminId());
+                if(user != null){
+                    jo.put("adminName",user.getUserName());
+                }
                 jo.put("discussion_name", discussion.getDiscussion_name());
                 jo.put("discussion_title_img_url", discussion.getDiscussion_title_img_url());
                 jo.put("discussion_content", discussion.getDescription());

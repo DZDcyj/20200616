@@ -76,4 +76,10 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
         String sql = "select * from discussion where discussion_name like "+"'%"+name+"%'";
         return getDiscussion(sql);
     }
+
+    public List<Discussion> findNums(long id){
+        Object params[] = {id};
+        String sql = "select * from discussion where discussion_adminId="+id;
+        return getDiscussion(sql);
+    }
 }

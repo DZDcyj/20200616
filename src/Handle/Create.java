@@ -1,7 +1,9 @@
 package Handle;
 
 import Community.Discussion;
+import User.User;
 import Utils.DiscussionDaoImpl;
+import Utils.UserDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +24,17 @@ public class Create extends HttpServlet {
         if(type.equals("CreateDis")){
             String discussion_name = req.getParameter("title");
             String discussion_description = req.getParameter("description");
+            UserDaoImpl userDao = new UserDaoImpl();
             Discussion discussion = new Discussion();
             DiscussionDaoImpl discussionDao = new DiscussionDaoImpl();
 
             List<Discussion> discussionList = discussionDao.selectAll();
 
             discussion.setDiscussion_id(discussionList.size()+1);
-            discussion.setAdminId(1);
+            User user = userDao.findUserName(req.getParameter("name"));
+            if(user != null) {
+                discussion.setAdminId(user.getUserId());
+            }
             discussion.setDiscussion_title_img_url("https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
             discussion.setDiscussion_name(discussion_name);
             discussion.setDescription(discussion_description);

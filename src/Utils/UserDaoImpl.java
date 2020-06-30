@@ -35,9 +35,37 @@ public class UserDaoImpl extends DButils implements UserDao{
 
     @Override
     public List<User> selectSomeUser(String name) {
-        String sql = "select * from user where userName="+name;
+        String sql = "select * from user where userName="+"\""+name+"\"";
         // 执行sql语句
        return getUserList(sql);
+    }
+
+    public User findUserId(long id) {
+        String sql = "select * from user where userId="+id;
+        // 执行sql语句
+       List<User> users = getUserList(sql);
+       if(users != null) {
+           for (User user : users) {
+               if (user.getUserId() == id){
+                   return user;
+               }
+           }
+       }
+       return null;
+    }
+
+    public User findUserName(String name) {
+        String sql = "select * from user where userName="+"\""+name+"\"";
+        // 执行sql语句
+        List<User> users = getUserList(sql);
+        if(users != null) {
+            for (User user : users) {
+                if (user.getUserName().equals(name)){
+                    return user;
+                }
+            }
+        }
+        return null;
     }
 
     public List<User> getUserList(String sql){
@@ -95,7 +123,7 @@ public class UserDaoImpl extends DButils implements UserDao{
     public int delete(User user) {
         Object params[] = {user.getUserId()};
         // 要执行的sql语句
-        String sql = "delete from student where userID=?";
+        String sql = "delete from user where userID=?";
 
         // 执行sql语句
         int i = doUpdate(sql, params);
@@ -104,4 +132,5 @@ public class UserDaoImpl extends DButils implements UserDao{
         getClose();
         return i;
     }
+
 }
