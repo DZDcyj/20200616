@@ -50,4 +50,41 @@
         <servlet-name>modify</servlet-name>
         <url-pattern>/modify</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ban</servlet-name>
+        <servlet-class>control.Ban</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ban</servlet-name>
+        <url-pattern>/ban</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createCourse</servlet-name>
+        <servlet-class>control.CreateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createCourse</servlet-name>
+        <url-pattern>/createCourse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletecomment</servlet-name>
+        <servlet-class>control.DeleteComment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletecomment</servlet-name>
+        <url-pattern>/deletecomment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletecourse</servlet-name>
+        <servlet-class>control.DeleteCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletecourse</servlet-name>
+        <url-pattern>/deletecourse</url-pattern>
+    </servlet-mapping>
+
 </web-app>

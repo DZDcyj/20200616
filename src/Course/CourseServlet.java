@@ -47,8 +47,12 @@ public class CourseServlet extends HttpServlet {
 
             CourseDaoImpl courseDao = new CourseDaoImpl();
             List<Course> courses = courseDao.selectAll();
-
-            jo = getAllCourse(handleCourse(1,courses,id0));
+            if(courses != null) {
+                List<Course> courseList = handleCourse(1, courses, id0);
+                if(courseList != null) {
+                    jo = getAllCourse(courseList);
+                }
+            }
         }
 
         /**
@@ -62,7 +66,12 @@ public class CourseServlet extends HttpServlet {
 
             CourseDaoImpl courseDao = new CourseDaoImpl();
             List<Course> courses = courseDao.selectAll();
-            jo = getAllCourse(handleCourse(0,courses,id0));
+            if(courses != null) {
+                List<Course> courseList = handleCourse(0, courses, id0);
+                if(courseList != null) {
+                    jo = getAllCourse(courseList);
+                }
+            }
         }
 
         /**
@@ -77,7 +86,9 @@ public class CourseServlet extends HttpServlet {
             CourseDaoImpl courseDao = new CourseDaoImpl();
             List<Course> courses = courseDao.selectAll();
             System.out.println("执行COurse");
-            jo = getAllCourse(courses);
+            if(courses != null) {
+                jo = getAllCourse(courses);
+            }
         }
 
         /**
@@ -94,6 +105,14 @@ public class CourseServlet extends HttpServlet {
             String sentId = req.getParameter("id");
             long id = Integer.parseInt(sentId);
             jo = getSpecificCourse(courses,id);
+
+            CourseSort courseSort = new CourseSort(courses);
+            List<Course> courseList = courseSort.sortResult();
+            if(courseList != null){
+                for(Course course:courseList){
+                    getJSONArray(jo,course);
+                }
+            }
         }
 
         /**
@@ -163,14 +182,16 @@ public class CourseServlet extends HttpServlet {
      * */
 
     private void getJSONArray(JSONArray jo, Course course) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("course_id",course.getCourse_id());
-        jsonObject.put("course_name",course.getCourse_name());
-        jsonObject.put("course_image_url",course.getImage_url());
-        jsonObject.put("course_video_url",course.getVideo_url());
-        jsonObject.put("course_views",course.getCourse_views());
-        jsonObject.put("course_description",course.getCourse_description());
-        jo.add(jsonObject);
+        if(course != null) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("course_id", course.getCourse_id());
+            jsonObject.put("course_name", course.getCourse_name());
+            jsonObject.put("course_image_url", course.getImage_url());
+            jsonObject.put("course_video_url", course.getVideo_url());
+            jsonObject.put("course_views", course.getCourse_views());
+            jsonObject.put("course_description", course.getCourse_description());
+            jo.add(jsonObject);
+        }
     }
 
     /**
@@ -195,25 +216,29 @@ public class CourseServlet extends HttpServlet {
         /**
          * 0为我教的课
          * */
+        int flag = 0;
         if(sign == 0){
             if(courses != null){
                 TeacherToClassDaoImpl teacherToClassDao = new TeacherToClassDaoImpl();
                 List<ClassToUser> classToUsers = teacherToClassDao.search(0,usr_id);
 
                 Iterator<Course> courseIterator = courses.iterator();
-
-                int flag = 0;
-                while(courseIterator.hasNext()){
-                    Course course= courseIterator.next();
-                    for(int i = 0;i<classToUsers.size()&&flag==0;i++){
-                        if(course.getCourse_id() == classToUsers.get(i).getCourse_id()){
-                            flag = 1;
+                if(classToUsers != null) {
+                    while (courseIterator.hasNext()) {
+                        Course course = courseIterator.next();
+                        for (int i = 0; i < classToUsers.size() && flag == 0; i++) {
+                            if (course.getCourse_id() == classToUsers.get(i).getCourse_id()) {
+                                flag = 1;
+                            }
                         }
+                        if (flag == 0) {
+                            courseIterator.remove();
+                        }
+                        flag = 0;
                     }
-                    if(flag == 0){
-                        courseIterator.remove();
-                    }
-                    flag = 0;
+                }
+                else{
+                    return null;
                 }
             }
         }
@@ -228,19 +253,23 @@ public class CourseServlet extends HttpServlet {
                 List<ClassToUser> classToUsers = studentToClassDao.search(0,usr_id);
                 Iterator<Course> courseIterator = courses.iterator();
 
-                int flag = 0;
 
-                while(courseIterator.hasNext()){
-                    Course course =courseIterator.next();
-                    for(int j = 0 ;j<classToUsers.size()&&flag == 0;j++){
-                        if(course.getCourse_id() == classToUsers.get(j).getCourse_id()){
-                            flag = 1;
+                if(classToUsers != null) {
+                    while (courseIterator.hasNext()) {
+                        Course course = courseIterator.next();
+                        for (int j = 0; j < classToUsers.size() && flag == 0; j++) {
+                            if (course.getCourse_id() == classToUsers.get(j).getCourse_id()) {
+                                flag = 1;
+                            }
                         }
+                        if (flag == 0) {
+                            courseIterator.remove();
+                        }
+                        flag = 0;
                     }
-                    if(flag == 0){
-                        courseIterator.remove();
-                    }
-                    flag = 0;
+                }
+                else{
+                    return null;
                 }
             }
         }

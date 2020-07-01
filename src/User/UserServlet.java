@@ -87,7 +87,12 @@ public class UserServlet extends HttpServlet {
             if(followers != null && user_id != -1) {
                 jo.put("follower_nums", followers.size());
                 jo.put("discussion_nums",discussions.size());
-                jo.put("comment_nums",comments.size());
+                if(comments != null) {
+                    jo.put("comment_nums", comments.size());
+                }
+                else{
+                    jo.put("comment_nums", 0);
+                }
                 jsonArray.add(jo);
                 for (Follower follower : followers) {
                     JSONObject jsonObject = new JSONObject();

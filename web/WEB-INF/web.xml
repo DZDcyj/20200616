@@ -61,12 +61,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>createcourse</servlet-name>
+        <servlet-name>createCourse</servlet-name>
         <servlet-class>control.CreateCourse</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>createcourse</servlet-name>
-        <url-pattern>/createcourse</url-pattern>
+        <servlet-name>createCourse</servlet-name>
+        <url-pattern>/createCourse</url-pattern>
     </servlet-mapping>
 
     <servlet>

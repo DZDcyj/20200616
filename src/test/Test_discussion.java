@@ -12,7 +12,9 @@ public class Test_discussion {
         DiscussionDaoImpl discussionDao = new DiscussionDaoImpl();
         CommentDaoImpl commentDao = new CommentDaoImpl();
 
-        discussion.setDiscussion_id(1);
+        //discussion.setDiscussion_id(19);
+        //discussionDao.delete(discussion);
+        /*discussion.setDiscussion_id(1);
         discussion.setAdminId(1);
         discussion.setDiscussion_name("这道题怎么做");
         discussion.setDescription("在做等离子物理对撞实验的时候，如果把第三能量的极坐标，向负方向调整三个阿尔法单位，那么对最终结果将会产生多少影响？\",\n");

@@ -36,9 +36,7 @@ public class UserDaoImpl extends DButils implements UserDao{
     @Override
     public List<User> selectAll() {
         // 要执行的sql语句
-        String sql = "select * from student";
-
-
+        String sql = "select * from user";
         return getUserList(sql);
     }
 
@@ -165,6 +163,27 @@ public class UserDaoImpl extends DButils implements UserDao{
         int i = doUpdate(sql, params);
 
         // 释放资源
+        getClose();
+        return i;
+    }
+
+    /**
+     * 禁言用户
+     *
+     * @return
+     */
+    public int banUser(String userName){
+        String 	insertSql = "update user set user_isBan = '" + "1" +
+                "'where userName = '" + userName+"'";
+        int i = doUpdate(insertSql,null);
+        getClose();
+        return i;
+    }
+
+    public int liftBanUser(String userName){
+        String 	insertSql = "update user set user_isBan = '" + "0" +
+                "'where userName = '" + userName+"'";
+        int i = doUpdate(insertSql,null);
         getClose();
         return i;
     }

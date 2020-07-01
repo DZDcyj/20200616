@@ -18,7 +18,7 @@ public class CommentDao {
 		Connection connection
 			= DriverManager.getConnection(url, user, password);
 		Statement statement =connection.createStatement();
-		String insertSql = "delete from discussion where Dis_id="+ disId;
+		String insertSql = "delete from discussion where discussion_id="+ disId;
 		statement.execute(insertSql);
 		statement.close();
 		connection.close();
