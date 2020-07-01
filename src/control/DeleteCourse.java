@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Course.Course;
+import User.User;
 import Utils.CourseDaoImpl;
 import Utils.StudentToClassDaoImpl;
 import Utils.TeacherToClassDaoImpl;
-import dao.CourseDao;
+import Utils.UserDaoImpl;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -47,7 +48,20 @@ public class DeleteCourse extends HttpServlet{
 				}
 			}
 		}
-        if(type.equals("delete")){
+		if(type.equals("add")){
+			StudentToClassDaoImpl studentToClassDao = new StudentToClassDaoImpl();
+
+			long id = Integer.valueOf(request.getParameter("id"));
+			String name = request.getParameter("name");
+
+			UserDaoImpl userDao = new UserDaoImpl();
+			User user = userDao.findUserName(name);
+
+			StudentToClassDaoImpl toClassDao =  new StudentToClassDaoImpl();
+			toClassDao.insert(id,user.getUserId());
+		}
+
+		if(type.equals("delete")){
         	String course_id = request.getParameter("id");
         	long id = Integer.valueOf(course_id);
         	CourseDaoImpl courseDao = new CourseDaoImpl();

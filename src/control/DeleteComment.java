@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Community.Comment;
 import User.User;
 import Utils.CommentDaoImpl;
+import Utils.StudentToClassDaoImpl;
 import Utils.UserDaoImpl;
 import dao.CommentDao;
 import net.sf.json.JSON;
@@ -31,8 +32,6 @@ public class DeleteComment extends HttpServlet{
 
 		JSONArray jsonArray = new JSONArray();
 
-		if(type.equals("init")){
-		}
 
 		if(type.equals("delete")){
 
@@ -42,6 +41,9 @@ public class DeleteComment extends HttpServlet{
 
 
 		}
+
+
+
 		List<Comment> comments = commentDao.selectAll();
 		UserDaoImpl userDao = new UserDaoImpl();
 		if(comments != null) {

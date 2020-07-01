@@ -14,7 +14,6 @@ import User.User;
 import Utils.CourseDaoImpl;
 import Utils.TeacherToClassDaoImpl;
 import Utils.UserDaoImpl;
-import dao.CourseDao;
 
 public class CreateCourse extends HttpServlet{
 	@Override
