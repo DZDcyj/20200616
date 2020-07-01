@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscussionDaoImpl extends DButils implements DiscussionDao {
+
+    /**
+     * 在讨论表中插入讨论的信息
+     * */
+
     @Override
     public int insert(Discussion discussion) {
         Object params [] = {discussion.getDiscussion_id(),discussion.getAdminId(),discussion.getDiscussion_name(),discussion.getDiscussion_title_img_url(),discussion.getDescription()};
@@ -17,11 +22,19 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
         return i;
     }
 
+    /**
+     * 获取所有讨论列表
+     * */
+
     @Override
     public List<Discussion> selectAll() {
         String sql = "select * from Discussion";
         return getDiscussion(sql);
     }
+
+    /**
+     * 获取讨论列表
+     * */
 
     public List<Discussion> getDiscussion(String sql){
         ResultSet rs = doQuery(sql,null);
@@ -47,6 +60,11 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
         return list;
     }
 
+    /**
+     * 更新讨论信息
+     * 根据讨论id
+     * */
+
     @Override
     public int update(Discussion discussion) {
         Object params [] = {discussion.getDiscussion_id(),discussion.getAdminId(),discussion.getDiscussion_name(),discussion.getDiscussion_title_img_url(),discussion.getDescription(),discussion.getDiscussion_id()};
@@ -56,6 +74,10 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
         getClose();
         return i;
     }
+
+    /**
+     * 根据讨论版块的id删除课程
+     * */
 
     @Override
     public int delete(Discussion discussion) {
@@ -71,11 +93,21 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
         return i;
     }
 
+    /**
+     * 搜索讨论版块
+     * 根据讨论版块的名称
+     * */
+
     public List<Discussion> searchDiscussion(String name){
         Object params[] = {name};
         String sql = "select * from discussion where discussion_name like "+"'%"+name+"%'";
         return getDiscussion(sql);
     }
+
+    /**
+     * 搜索讨论版块
+     * 根据课程创建者的id
+     * */
 
     public List<Discussion> findNums(long id){
         Object params[] = {id};

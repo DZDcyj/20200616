@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl extends DButils implements UserDao{
+
+    /**
+     * 向数据库中添加信息
+     * */
+
     @Override
     public int insert(User user) {
         Object params[] = {user.getUserId(), user.getUserName()
@@ -24,6 +29,10 @@ public class UserDaoImpl extends DButils implements UserDao{
         return i;
     }
 
+    /**
+     * 选取数据库中所有的用户信息
+     * */
+
     @Override
     public List<User> selectAll() {
         // 要执行的sql语句
@@ -33,12 +42,22 @@ public class UserDaoImpl extends DButils implements UserDao{
         return getUserList(sql);
     }
 
+    /**
+     * 根据用户名称
+     * 获取用户列表
+     **/
+
     @Override
     public List<User> selectSomeUser(String name) {
         String sql = "select * from user where userName="+"\""+name+"\"";
         // 执行sql语句
        return getUserList(sql);
     }
+
+    /**
+     * 根据用户id
+     * 获取用户列表
+     * */
 
     public User findUserId(long id) {
         String sql = "select * from user where userId="+id;
@@ -54,6 +73,11 @@ public class UserDaoImpl extends DButils implements UserDao{
        return null;
     }
 
+    /**
+     * 根据用户名称
+     * 选取某个用户
+     * */
+
     public User findUserName(String name) {
         String sql = "select * from user where userName="+"\""+name+"\"";
         // 执行sql语句
@@ -67,6 +91,10 @@ public class UserDaoImpl extends DButils implements UserDao{
         }
         return null;
     }
+
+    /**
+     * 获取用户列表
+     * */
 
     public List<User> getUserList(String sql){
         ResultSet rs = doQuery(sql, null);
@@ -103,6 +131,10 @@ public class UserDaoImpl extends DButils implements UserDao{
         return list;
     }
 
+    /**
+     * 根据用户id更新用户信息
+     * */
+
     @Override
     public int update(User user) {
         Object params[]
@@ -118,6 +150,10 @@ public class UserDaoImpl extends DButils implements UserDao{
         getClose();
         return i;
     }
+
+    /**
+     * 根据用户id删除用户
+     * */
 
     @Override
     public int delete(User user) {

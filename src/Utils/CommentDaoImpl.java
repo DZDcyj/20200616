@@ -10,6 +10,11 @@ import java.util.List;
 
 public class CommentDaoImpl extends DButils implements CommentDao {
     @Override
+
+    /**
+     * 在数据库中增加一条评论信息
+     * */
+
     public int insert(Comment comment) {
         Object params [] = {comment.getDiscussion_id(),comment.getComment_id(),comment.getComment_content(),comment.getComment_responder_id()};
         String sql = "insert into comment values(?,?,?,?)";
@@ -17,6 +22,11 @@ public class CommentDaoImpl extends DButils implements CommentDao {
         getClose();
         return i;
     }
+
+
+    /**
+     * 在数据库中删除一条评论信息
+     * */
 
     @Override
     public int delete(Comment comment) {
@@ -27,6 +37,10 @@ public class CommentDaoImpl extends DButils implements CommentDao {
         return i;
     }
 
+    /**
+     * 在数据库中更新一条评论信息
+     * */
+
     @Override
     public int update(Comment comment) {
         Object params[] = {comment.getDiscussion_id(),comment.getComment_id(),comment.getComment_content(),comment.getComment_responder_id(),comment.getComment_id()};
@@ -36,6 +50,10 @@ public class CommentDaoImpl extends DButils implements CommentDao {
         return i;
     }
 
+    /**
+     * 按照回复者id来删除评论
+     * */
+
     public int delete1(Comment comment) {
         Object params[] = {comment.getComment_responder_id()};
         String sql = "delete from comment where comment_responder_id=?";
@@ -44,11 +62,19 @@ public class CommentDaoImpl extends DButils implements CommentDao {
         return i;
     }
 
+    /**
+     * 从数据库中选取所有评论
+     * */
+
     @Override
     public List<Comment> selectAll() {
         String sql = "select * from comment";
         return getList(sql);
     }
+
+    /**
+     * 获取评论列表
+     * */
 
     public List<Comment> getList(String sql){
         ResultSet rs = doQuery(sql,null);
@@ -72,6 +98,11 @@ public class CommentDaoImpl extends DButils implements CommentDao {
         }
         return list;
     }
+
+    /**
+     *根据讨论版块的id搜索
+     * 该讨论版块下的评论
+     * */
 
     public List<Comment> search(long discussion_id){
         String sql = "select * from comment where discussion_id="+discussion_id;

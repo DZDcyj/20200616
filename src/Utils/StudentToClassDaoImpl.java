@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
+
+    /**
+     * 根据课程id和用户id
+     * 添加到数据库
+     * */
+
     @Override
     public int insert(long principal_id, long subordinate_id) {
         Object params [] = {principal_id,subordinate_id};
@@ -19,19 +25,23 @@ public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     * 删除课程-学生表中到信息
+     * */
+
     @Override
     public int delete(long principal_id, long subordinate_id) {
         Object[] params;
         String sql;
         /**
-         *discussion被删除的情况
+         * course被删除的情况
          **/
         if(subordinate_id == -1) {
             params = new Object[]{principal_id};
             sql = "delete from course_student where course_id=?";
         }
         /**
-         *comment被删除的情况
+         * user被删除的情况
          * */
         else{
             params = new Object[]{principal_id, subordinate_id};
@@ -43,6 +53,10 @@ public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     * 更新课程-学神表中的信息
+     * */
+
     @Override
     public int update(long principal_id, long subordinate_id) {
         Object params[] = {principal_id,subordinate_id,principal_id};
@@ -52,12 +66,22 @@ public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     * 根据用户id搜索课程
+     *
+     * */
+
     @Override
     public List search(long principal_id, long subordinate_id) {
         Object params[] = {principal_id};
-        String sql = "select * from course_student where class_id=?";
+        String sql = "select * from course_student where user_id="+subordinate_id;
         return getList(sql);
     }
+
+    /**
+     * 获取课程-学生列表
+     * */
+
     public List<ClassToUser> getList(String sql){
 
         ResultSet rs = doQuery(sql,null);
@@ -69,8 +93,8 @@ public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
                 list = new ArrayList<ClassToUser>();
                 while(rs.next()){
                     ClassToUser classToUser = new ClassToUser();
-                    classToUser.setCourse_id(1);
-                    classToUser.setCourse_id(2);
+                    classToUser.setCourse_id(rs.getInt(1));
+                    classToUser.setUser_id(rs.getInt(2));
                     list.add(classToUser);
                 }
             }

@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDaoImpl extends DButils implements CourseDao{
+    /**
+     * 向数据库添加课程的处理函数
+     * */
+
     @Override
     public int insert(Course course) {
         Object params [] = {course.getCourse_id(),course.getCourse_name(),course.getImage_url(),course.getVideo_url(),course.getCourse_views(),course.getCourse_description()};
@@ -17,6 +21,10 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         return i;
     }
 
+    /**
+     * 选取数据库中的所有课程
+     * */
+
     @Override
     public List<Course> selectAll() {
         String sql = "select * from course";
@@ -24,7 +32,11 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         return getCourses(sql);
     }
 
-    private List<Course> getCourses(String sql) {
+    /**
+     * 获得课程列表
+     * **/
+
+    public List<Course> getCourses(String sql) {
         ResultSet rs = doQuery(sql,null);
         List<Course> list = null;
         try {
@@ -49,6 +61,11 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         return list;
     }
 
+    /**
+     * 提供搜索所用的接口
+     * 根据讨论的名称搜索
+     * **/
+
     @Override
     public List<Course> selectSomeCourses(String name) {
         Object params[] = {name};
@@ -56,6 +73,11 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         return getCourses(sql);
 
     }
+
+    /**
+     * 更新课程信息
+     * 根据课程id，选取课程更新
+     * */
 
     @Override
     public int update(Course course) {
@@ -67,6 +89,11 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         getClose();
         return i;
     }
+
+    /**
+     * 从数据库中删除课程
+     * 根据课程id删除
+     * */
 
     @Override
     public int delete(Course course) {

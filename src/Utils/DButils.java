@@ -15,6 +15,10 @@ public class DButils {
 
     private ResultSet rs = null;
 
+    /**
+     *获取链接对象
+     *  */
+
     static{
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -22,6 +26,10 @@ public class DButils {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 链接数据库
+     * */
 
     private void getConnect() {
         try {
@@ -32,6 +40,10 @@ public class DButils {
             System.out.println("链接数据库失败！！");
         }
     }
+
+    /**
+     *获取链接
+     * */
 
     public int doUpdate(String Sqls,Object params[]){
         getConnect();
@@ -47,6 +59,10 @@ public class DButils {
         return i;
     }
 
+    /**
+     * 查询SQL语句，获取结果集合
+     * */
+
     public ResultSet doQuery(String sql,Object params[]){
         getConnect();
         try {
@@ -58,6 +74,10 @@ public class DButils {
         return rs;
     }
 
+    /**
+     * 获取JDBC状态对象
+     * */
+
     public void handleSql(String sql, Object[] params) throws SQLException {
         stmt = conn.prepareStatement(sql);
         if(params != null && params.length != 0){
@@ -67,6 +87,10 @@ public class DButils {
         }
         System.out.println("执行的sql语句为："+stmt.toString());
     }
+
+    /**
+     * 释放所有资源
+     * */
 
     public void getClose() {
         try {

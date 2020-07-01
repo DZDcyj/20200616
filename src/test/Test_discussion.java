@@ -2,20 +2,15 @@ package test;
 
 import Community.Comment;
 import Community.Discussion;
-import Community.Reply;
 import Utils.CommentDaoImpl;
-import Utils.DiscussionDao;
 import Utils.DiscussionDaoImpl;
-import Utils.ReplyDaoImpl;
 
 public class Test_discussion {
     public static void main(String args[]){
         Discussion discussion = new Discussion();
         Comment comment = new Comment();
-        Reply reply = new Reply();
         DiscussionDaoImpl discussionDao = new DiscussionDaoImpl();
         CommentDaoImpl commentDao = new CommentDaoImpl();
-        ReplyDaoImpl replyDao = new ReplyDaoImpl();
 
         discussion.setDiscussion_id(1);
         discussion.setAdminId(1);

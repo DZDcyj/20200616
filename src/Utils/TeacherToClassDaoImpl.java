@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
+
+    /**
+     * 向课程-教师表中添加信息
+     **/
+
     @Override
     public int insert(long principal_id, long subordinate_id) {
         Object params [] = {principal_id,subordinate_id};
@@ -19,19 +24,23 @@ public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     *删除数据库中的信息
+     * */
+
     @Override
     public int delete(long principal_id, long subordinate_id) {
         Object[] params;
         String sql;
         /**
-         *discussion被删除的情况
+         * course被删除的情况
          **/
         if(subordinate_id == -1) {
             params = new Object[]{principal_id};
             sql = "delete from course_teacher where course_id=?";
         }
         /**
-         *comment被删除的情况
+         * user被删除的情况
          * */
         else{
             params = new Object[]{principal_id, subordinate_id};
@@ -43,6 +52,10 @@ public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     * 更新教师-课程表中的信息
+     * */
+
     @Override
     public int update(long principal_id, long subordinate_id) {
         Object params[] = {principal_id,subordinate_id,principal_id};
@@ -52,12 +65,21 @@ public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
         return i;
     }
 
+    /**
+     * 根据用户id
+     * 获取教师-课程表列表
+     * */
+
     @Override
     public List search(long principal_id, long subordinate_id) {
-        Object params[] = {principal_id};
-        String sql = "select * from course_user where class_id=?";
+        String sql = "select * from course_teacher where user_id="+subordinate_id;
         return getList(sql);
     }
+
+    /**
+     * 获取信息列表
+     * */
+
     public List<ClassToUser> getList(String sql){
 
         ResultSet rs = doQuery(sql,null);
@@ -69,8 +91,8 @@ public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
                 list = new ArrayList<ClassToUser>();
                 while(rs.next()){
                     ClassToUser classToUser = new ClassToUser();
-                    classToUser.setCourse_id(1);
-                    classToUser.setCourse_id(2);
+                    classToUser.setCourse_id(rs.getInt(1));
+                    classToUser.setUser_id(rs.getInt(2));
                     list.add(classToUser);
                 }
             }

@@ -27,6 +27,9 @@ public class UserServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         String type = req.getParameter("type");
 
+        /**
+         * 处理关注信息
+         * */
 
         if(type.equals("subscribe")){
             UserDaoImpl userDao = new UserDaoImpl();
@@ -48,11 +51,13 @@ public class UserServlet extends HttpServlet {
 
         }
 
+        /**
+         * 完成账户界面的加载
+         * */
+
         if(type.equals("account")){
             FollowerDaoImpl followerDao = new FollowerDaoImpl();
             UserDaoImpl userDao = new UserDaoImpl();
-
-
 
             User user = new User();
             user.setUserName(req.getParameter("name"));
@@ -98,7 +103,6 @@ public class UserServlet extends HttpServlet {
             Writer out = resp.getWriter();
             out.write(jsonArray.toString());
             out.flush();
-
 
         }
     }

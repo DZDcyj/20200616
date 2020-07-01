@@ -4,12 +4,15 @@ import Community.Discussion;
 import User.User;
 import Utils.DiscussionDaoImpl;
 import Utils.UserDaoImpl;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 public class Create extends HttpServlet {
@@ -21,6 +24,13 @@ public class Create extends HttpServlet {
         req.setCharacterEncoding("utf-8");
 
         String type = req.getParameter("type");
+        JSONArray jsonArray = new JSONArray();
+
+        /**
+         * 创建一个新的讨论板块
+         * 并更新数据库中的信息
+         * */
+
         if(type.equals("CreateDis")){
             String discussion_name = req.getParameter("title");
             String discussion_description = req.getParameter("description");
@@ -40,6 +50,9 @@ public class Create extends HttpServlet {
             discussion.setDescription(discussion_description);
 
             discussionDao.insert(discussion);
+
+            List<Discussion> discussions = discussionDao.selectAll();
         }
     }
+
 }

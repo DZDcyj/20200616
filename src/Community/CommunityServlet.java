@@ -90,7 +90,7 @@ public class CommunityServlet extends HttpServlet {
         out.flush();
     }
 
-    private void getCommentList(JSONArray jsonArray, CommentDaoImpl commentDao) {
+    public void getCommentList(JSONArray jsonArray, CommentDaoImpl commentDao) {
         List<Comment> comments = commentDao.selectAll();
         UserDaoImpl userDao = new UserDaoImpl();
 
@@ -110,7 +110,7 @@ public class CommunityServlet extends HttpServlet {
         }
     }
 
-    private void getDisList(JSONArray jsonArray, List<Discussion> discussions) {
+    public void getDisList(JSONArray jsonArray, List<Discussion> discussions) {
         UserDaoImpl userDao = new UserDaoImpl();
         if(discussions != null) {
             for (Discussion discussion : discussions) {
@@ -128,10 +128,5 @@ public class CommunityServlet extends HttpServlet {
                 jsonArray.add(jo);
             }
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }

@@ -23,6 +23,10 @@ public class ModifyServlet extends HttpServlet {
         String type = req.getParameter("type");
         System.out.println(type);
 
+        /**
+         * 处理用户信息的接收
+         * */
+
         if(type.equals("modfiysubmit")){
             UserDaoImpl userDao1 = new UserDaoImpl();
             User user1 = new User();
@@ -48,6 +52,10 @@ public class ModifyServlet extends HttpServlet {
 
             userDao1.update(user1);
         }
+
+        /**
+         * 完成修改界面的加载
+         * */
 
         if(type.equals("modify")){
             UserDaoImpl userDao = new UserDaoImpl();
