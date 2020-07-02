@@ -82,6 +82,28 @@ public class CommunityServlet extends HttpServlet {
             getCommentList(jsonArray, commentDao);
         }
 
+        if(type.equals("createDisRequest")){
+            String user_name = req.getParameter("user_name");
+            UserDaoImpl userDao = new UserDaoImpl();
+
+            User user = userDao.findUserName(user_name);
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("user_isBan",user.isUser_isBan());
+            jsonArray.add(jsonObject);
+        }
+
+        if(type.equals("send")){
+            String user_name = req.getParameter("user_name");
+            UserDaoImpl userDao = new UserDaoImpl();
+
+            User user = userDao.findUserName(user_name);
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("user_isBan",user.isUser_isBan());
+            jsonArray.add(jsonObject);
+        }
+
         System.out.println("JSON语句为："+jsonArray);
         System.out.println("发出信息：");
         System.out.println(jsonArray.toString());
@@ -93,20 +115,21 @@ public class CommunityServlet extends HttpServlet {
     public void getCommentList(JSONArray jsonArray, CommentDaoImpl commentDao) {
         List<Comment> comments = commentDao.selectAll();
         UserDaoImpl userDao = new UserDaoImpl();
+        if(comments != null) {
+            for (Comment comment : comments) {
+                JSONObject jo = new JSONObject();
+                jo.put("discussion_id", comment.getDiscussion_id());
 
-        for(Comment comment:comments){
-            JSONObject jo = new JSONObject();
-            jo.put("discussion_id",comment.getDiscussion_id());
-
-            jo.put("comment_id",comment.getComment_id());
-            jo.put("comment_content",comment.getComment_content());
-            jo.put("comment_responder_id",comment.getComment_responder_id());
-            User user = userDao.findUserId(comment.getComment_responder_id());
-            if(user != null){
-                jo.put("comment_user_name",user.getUserName());
+                jo.put("comment_id", comment.getComment_id());
+                jo.put("comment_content", comment.getComment_content());
+                jo.put("comment_responder_id", comment.getComment_responder_id());
+                User user = userDao.findUserId(comment.getComment_responder_id());
+                if (user != null) {
+                    jo.put("comment_user_name", user.getUserName());
+                }
+                jo.put("comment_img_url", "https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
+                jsonArray.add(jo);
             }
-            jo.put("comment_img_url","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
-            jsonArray.add(jo);
         }
     }
 

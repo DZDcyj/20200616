@@ -15,7 +15,7 @@ public class CourseSort {
         Collections.sort(courseList, new Comparator<Course>() {
             @Override
             public int compare(Course o1, Course o2) {
-                if(o1.getCourse_views() - o2.getCourse_views() >0){
+                if(o1.getCourse_views() - o2.getCourse_views() <0){
                     return 1;
                 }
                 else{

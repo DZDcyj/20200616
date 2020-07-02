@@ -158,5 +158,37 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/mysql-connector-java-5.1.49" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin/apidocs" />
+          <root url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin/site/apidocs" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons-fileupload-1.4-bin" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin/apidocs" />
+          <root url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin/site/apidocs" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons/commons/commons-fileupload-1.3.3-bin" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>

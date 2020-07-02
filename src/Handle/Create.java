@@ -40,7 +40,10 @@ public class Create extends HttpServlet {
 
             List<Discussion> discussionList = discussionDao.selectAll();
 
-            discussion.setDiscussion_id(discussionList.size()+1);
+            discussion.setDiscussion_id(1);
+            if(discussionList != null) {
+                discussion.setDiscussion_id(discussionList.size() + 1);
+            }
             User user = userDao.findUserName(req.getParameter("name"));
             if(user != null) {
                 discussion.setAdminId(user.getUserId());

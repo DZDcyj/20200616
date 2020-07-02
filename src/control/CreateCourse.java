@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import Utils.TeacherToClassDaoImpl;
 import Utils.UserDaoImpl;
 
 public class CreateCourse extends HttpServlet{
+
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
@@ -28,9 +30,14 @@ public class CreateCourse extends HttpServlet{
 
         if(type.equals("createCourse")) {
             CourseDaoImpl courseDao = new CourseDaoImpl();
+            long courseId = 1;
 
 
-            long courseId = courseDao.selectAll().size();//获取表单值
+            if(courseDao.selectAll() != null) {
+               List<Course> courseList = courseDao.selectAll();//获取表单值
+                int length = courseList.size();
+                courseId = courseList.get(length - 1).getCourse_id()+1;
+            }
             String courseName = request.getParameter("title");
             String courseImgUrl = request.getParameter("img_url");
             String courseVideoUrl = request.getParameter("video_url");
@@ -44,24 +51,27 @@ public class CreateCourse extends HttpServlet{
             course.setVideo_url(courseVideoUrl);
             course.setCourse_description(description);
 
-            String object_img_path = "images/"+course.getCourse_name()+".png";
+            //String object_img_path = "images/"+course.getCourse_name()+".png";
             String local_img_path = course.getImage_url();
+            System.out.println("img_url is:"+local_img_path);
 
-            AliOssUtil aliOssUtil_img = new AliOssUtil(object_img_path,local_img_path);
-            aliOssUtil_img.uploadFile();
-            String img_url = aliOssUtil_img.getUrl();
-            course.setImage_url(img_url);
+            //AliOssUtil aliOssUtil_img = new AliOssUtil(object_img_path,local_img_path);
+           // aliOssUtil_img.uploadFile();
+            //String img_url = aliOssUtil_img.getUrl();
+            //course.setImage_url(img_url);
 
             String object_video_path = "video/"+course.getCourse_name()+".mp4";
 
             String local_video_path = course.getVideo_url();
 
-            AliOssUtil aliOssUtil_video = new AliOssUtil(object_video_path,local_video_path);
+            System.out.println("video_url is:"+local_video_path);
+
+            /*AliOssUtil aliOssUtil_video = new AliOssUtil(object_video_path,local_video_path);
             aliOssUtil_video.uploadFile();
 
             String video_url = aliOssUtil_video.getUrl();
             course.setVideo_url(video_url);
-            System.out.println(video_url);
+            System.out.println(video_url);*/
 
             UserDaoImpl userDao = new UserDaoImpl();
             User user = userDao.findUserName(user_name);

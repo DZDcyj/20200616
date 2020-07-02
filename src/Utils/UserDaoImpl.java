@@ -17,9 +17,9 @@ public class UserDaoImpl extends DButils implements UserDao{
     public int insert(User user) {
         Object params[] = {user.getUserId(), user.getUserName()
                 , user.getUserAge()
-                , user.getUserSex(), user.getUserAddress(),user.isUser_isBan(),user.getUser_ban_time()};
+                , user.getUserSex(), user.getUserAddress(),user.isUser_isBan(),user.getUser_ban_time(),user.getUser_privilege()};
         //要执行的sql语句
-        String sql = "insert into user values(?,?,?,?,?,?,?)";
+        String sql = "insert into user values(?,?,?,?,?,?,?,?)";
 
         //执行sql语句
         int i = doUpdate(sql, params);
@@ -116,6 +116,7 @@ public class UserDaoImpl extends DButils implements UserDao{
                     user.setUserAddress(rs.getString(5));
                     user.setUser_isBan(rs.getBoolean(6));
                     user.setUser_ban_time(rs.getInt(7));
+                    user.setUser_privilege(rs.getInt(8));
 
                     list.add(user);
                 }
@@ -138,9 +139,9 @@ public class UserDaoImpl extends DButils implements UserDao{
         Object params[]
                 = {user.getUserName()
                 ,  user.getUserAge()
-                , user.getUserSex(), user.getUserAddress(),user.isUser_isBan(),user.getUser_ban_time(),user.getUserId()};
+                , user.getUserSex(), user.getUserAddress(),user.isUser_isBan(),user.getUser_ban_time(),user.getUser_privilege(),user.getUserId()};
         // 要执行的sql语句
-        String sql = "update user set userName=?,userAge=?,userSex=?,userAddress=?,user_isBan=?,user_ban_time=? where userId=?";
+        String sql = "update user set userName=?,userAge=?,userSex=?,userAddress=?,user_isBan=?,user_ban_time=?,user_privilege=? where userId=?";
         // 执行sql语句
         int i = doUpdate(sql, params);
 
@@ -188,4 +189,29 @@ public class UserDaoImpl extends DButils implements UserDao{
         return i;
     }
 
+    public int changePrivilege(User user){
+        Object params[] = {user.getUser_privilege(),user.getUserId()};
+        String sql = "update user set user_privilege=? where user_id=?";
+        int i = doUpdate(sql,params);
+        getClose();
+        return i;
+    }
+
+    public List<User> findBanedUser(){
+        String sql = "select * from user where user_isBan=1";
+        return getUserList(sql);
+    }
+
+    public List<User> findNoBanedUser(){
+        String sql = "select * from user where user_isBan=0";
+        return getUserList(sql);
+    }
+
+    public int unbanUser(String userName){
+        String 	insertSql = "update user set user_isBan = '" + "0" +
+                "'where userName = '" + userName+"'";
+        int i = doUpdate(insertSql,null);
+        getClose();
+        return i;
+    }
 }

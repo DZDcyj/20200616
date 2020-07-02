@@ -73,7 +73,10 @@ public class StudentToClassDaoImpl extends DButils implements ManyToManyDao {
 
     @Override
     public List search(long principal_id, long subordinate_id) {
-        Object params[] = {principal_id};
+        String sql = "select * from course_student where user_id="+subordinate_id;
+        return getList(sql);
+    }
+    public List searchCourse( long subordinate_id) {
         String sql = "select * from course_student where user_id="+subordinate_id;
         return getList(sql);
     }

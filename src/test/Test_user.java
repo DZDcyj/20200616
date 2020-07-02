@@ -1,6 +1,7 @@
 package test;
 
 import User.User;
+import Utils.FollowerDao;
 import Utils.FollowerDaoImpl;
 import Utils.UserDaoImpl;
 import User.Follower;
@@ -21,9 +22,17 @@ public class Test_user {
         user.setUserId(2);
         user.setUserSex("男");
         user.setUserAddress("北京朝阳");
+        user.setUser_privilege(1);
+        user.setUser_isBan(false);
 
-        userDao.insert(user);
+        userDao.update(user);
 
+        /*FollowerDaoImpl followerDao = new FollowerDaoImpl();
+        Follower follower = new Follower();
+        follower.setFollower_id(3);
+        follower.setUser_id(2);
+        followerDao.insert(follower);
+        */
         /*user.setUserName("王天梦");
         user.setUserAge(20);
         user.setUserId(3);
@@ -39,9 +48,9 @@ public class Test_user {
         user.setUserAddress("甘肃兰州");
 
         userDao.insert(user);*/
-        /*Follower follower = new Follower();
+        Follower follower = new Follower();
         FollowerDaoImpl followerDao = new FollowerDaoImpl();
-        follower.setUser_id(2);
+        /*follower.setUser_id(2);
         follower.setFollower_id(1);
 
         followerDao.insert(follower);

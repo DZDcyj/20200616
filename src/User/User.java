@@ -13,6 +13,15 @@ public class User {
     private String userAddress;//地址
     private boolean user_isBan = false;
     private long user_ban_time = 0;
+    private int user_privilege;
+
+    public int getUser_privilege() {
+        return user_privilege;
+    }
+
+    public void setUser_privilege(int user_privilege) {
+        this.user_privilege = user_privilege;
+    }
 
     public boolean isUser_isBan() {
         return user_isBan;

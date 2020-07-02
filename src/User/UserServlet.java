@@ -32,6 +32,7 @@ public class UserServlet extends HttpServlet {
          * */
 
         if(type.equals("subscribe")){
+            System.out.println("sb");
             UserDaoImpl userDao = new UserDaoImpl();
 
             String subscribe_user_name = req.getParameter("subscribe_user_name");
@@ -45,7 +46,10 @@ public class UserServlet extends HttpServlet {
             follower.setFollower_id(subscribe_user.getUserId());
 
             FollowerDaoImpl followerDao = new FollowerDaoImpl();
-            if(followerDao.find(follower) == null) {
+            Follower follower1 = followerDao.find(follower);
+            System.out.println(follower1);
+            if(follower1 == null) {
+
                 followerDao.insert(follower);
             }
 
@@ -56,6 +60,7 @@ public class UserServlet extends HttpServlet {
          * */
 
         if(type.equals("account")){
+            System.out.println("加载用户信息");
             FollowerDaoImpl followerDao = new FollowerDaoImpl();
             UserDaoImpl userDao = new UserDaoImpl();
 
@@ -78,15 +83,35 @@ public class UserServlet extends HttpServlet {
                 CommentDaoImpl commentDao = new CommentDaoImpl();
 
                 discussions = discussionDao.findNums(user_id);
-                comments = commentDao.search(user_id);
+                comments = commentDao.searchByUserId(user_id);
 
             }
 
             JSONArray jsonArray = new JSONArray();
             JSONObject jo = new JSONObject();
-            if(followers != null && user_id != -1) {
-                jo.put("follower_nums", followers.size());
-                jo.put("discussion_nums",discussions.size());
+            User user1 = userDao.findUserName(req.getParameter("name"));
+            if(user1 != null) {
+                jo.put("user_privilege",user1.getUser_privilege());
+            }
+            else{
+                jo.put("user_privilege",0);
+            }
+
+            if(user_id != -1) {
+                if(followers != null) {
+                    jo.put("follower_nums", followers.size());
+                }
+                else{
+                    jo.put("follower_nums", 0);
+                }
+
+                if(discussions != null) {
+                    jo.put("discussion_nums", discussions.size());
+                }
+                else{
+                    jo.put("discussion_nums", 0);
+                }
+
                 if(comments != null) {
                     jo.put("comment_nums", comments.size());
                 }
@@ -94,11 +119,13 @@ public class UserServlet extends HttpServlet {
                     jo.put("comment_nums", 0);
                 }
                 jsonArray.add(jo);
-                for (Follower follower : followers) {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("user_id", follower.getUser_id());
-                    jsonObject.put("follower_id", follower.getFollower_id());
-                    jsonArray.add(jsonObject);
+                if(followers != null) {
+                    for (Follower follower : followers) {
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("user_id", follower.getUser_id());
+                        jsonObject.put("follower_id", follower.getFollower_id());
+                        jsonArray.add(jsonObject);
+                    }
                 }
             }
 

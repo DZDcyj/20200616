@@ -110,9 +110,20 @@ public class CommentDaoImpl extends DButils implements CommentDao {
     }
 
     public int deleteComment(Comment comment) {
-        Object params[] = {comment.getComment_id()};
-        String sql = "delete from comment where comment_id=?";
+        Object params[] = {comment.getComment_id(),comment.getComment_responder_id()};
+        String sql = "delete from comment where comment_id=? and comment_responder_id=?";
         int i = doUpdate(sql,params);
+        getClose();
+        return i;
+    }
+
+    public List<Comment> searchByUserId(long user_id){
+        String sql = "select * from comment where comment_responder_id="+user_id;
+        return getList(sql);
+    }
+    public int deleteDisComment(Comment comment){
+        String sql = "delete from comment where discussion_id="+comment.getDiscussion_id();
+        int i =doUpdate(sql,null);
         getClose();
         return i;
     }

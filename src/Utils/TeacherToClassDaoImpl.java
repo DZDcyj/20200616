@@ -101,4 +101,12 @@ public class TeacherToClassDaoImpl extends DButils implements ManyToManyDao {
         }
         return list;
     }
+
+    public ClassToUser findCourse(long usr_id,long course_id){
+        String sql = "select * from course_teacher where course_id="+course_id+" and user_id="+usr_id;
+        if(getList(sql) != null){
+            return getList(sql).get(0);
+        }
+        return null;
+    }
 }

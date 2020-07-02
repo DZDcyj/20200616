@@ -108,4 +108,12 @@ public class CourseDaoImpl extends DButils implements CourseDao{
         getClose();
         return i;
     }
+
+    public Course searchCourse(long id){
+        String sql = "select * from course where course_id="+id;
+        if(getCourses(sql) != null) {
+            return getCourses(sql).get(0);
+        }
+        return null;
+    }
 }

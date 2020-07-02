@@ -109,9 +109,9 @@ public class DiscussionDaoImpl extends DButils implements DiscussionDao {
      * 根据课程创建者的id
      * */
 
-    public List<Discussion> findNums(long id){
+    public List<Discussion> findNums(long id) {
         Object params[] = {id};
-        String sql = "select * from discussion where discussion_adminId="+id;
+        String sql = "select * from discussion where discussion_adminId=" + id;
         return getDiscussion(sql);
     }
 }

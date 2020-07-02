@@ -109,10 +109,12 @@ public class FollowerDaoImpl extends DButils implements FollowerDao{
     public Follower find(Follower follower){
         List<Follower>  followers = selectAll();
         int flag;
-        for(Follower follower1:followers){
-            if(follower1.getUser_id() == follower.getUser_id()){
-                flag = 1;
-                return follower1;
+        if(followers != null) {
+            for (Follower follower1 : followers) {
+                if (follower1.getUser_id() == follower.getUser_id()) {
+                    flag = 1;
+                    return follower1;
+                }
             }
         }
         return null;

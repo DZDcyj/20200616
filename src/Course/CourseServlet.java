@@ -2,10 +2,7 @@ package Course;
 
 import User.ClassToUser;
 import User.User;
-import Utils.CourseDaoImpl;
-import Utils.StudentToClassDaoImpl;
-import Utils.TeacherToClassDaoImpl;
-import Utils.UserDaoImpl;
+import Utils.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -85,7 +82,7 @@ public class CourseServlet extends HttpServlet {
 
             CourseDaoImpl courseDao = new CourseDaoImpl();
             List<Course> courses = courseDao.selectAll();
-            System.out.println("执行COurse");
+            System.out.println("执行Course");
             if(courses != null) {
                 jo = getAllCourse(courses);
             }
@@ -146,6 +143,21 @@ public class CourseServlet extends HttpServlet {
             resultCourses = handleCourse(sign, resultCourses, id0);
             jo = getAllCourse(resultCourses);
 
+        }
+        if(type.equals("addVideo")){
+            String user_name = req.getParameter("user_name");
+            String course_id1 = req.getParameter("course_id");
+            System.out.println(course_id1);
+            long course_id = Integer.valueOf(course_id1);
+            System.out.println(user_name);
+
+
+            UserDaoImpl userDao = new UserDaoImpl();
+
+            User user = userDao.findUserName(user_name);
+
+            StudentToClassDaoImpl studentToClassDao = new StudentToClassDaoImpl();
+            studentToClassDao.insert(course_id,user.getUserId());
         }
 
         System.out.println("JSON语句为："+jo);
