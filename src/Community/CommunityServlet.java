@@ -1,10 +1,7 @@
 package Community;
 
 import User.User;
-import Utils.CommentDaoImpl;
-import Utils.DiscussionDaoImpl;
-import Utils.UserDao;
-import Utils.UserDaoImpl;
+import Utils.*;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import User.Follower;
 import java.util.List;
 
 public class CommunityServlet extends HttpServlet {
@@ -64,7 +62,13 @@ public class CommunityServlet extends HttpServlet {
             Comment comment = new Comment();
 
             if(list != null){
-                comment.setComment_id(list.size()+1);
+                long comment_id = 0;
+                for(Comment comment1:list){
+                    if(comment_id <= comment1.getComment_id()){
+                        comment_id = comment1.getComment_id()+1;
+                    }
+                }
+                comment.setComment_id(comment_id);
             }
             else{
                 comment.setComment_id(0);
@@ -102,6 +106,23 @@ public class CommunityServlet extends HttpServlet {
 
             jsonObject.put("user_isBan",user.isUser_isBan());
             jsonArray.add(jsonObject);
+        }
+
+        if(type.equals("attention")){
+            FollowerDaoImpl followerDao = new FollowerDaoImpl();
+            List<Follower> followers = followerDao.selectAll();
+            UserDaoImpl userDao = new UserDaoImpl();
+            if(followers != null){
+                for(Follower follower:followers){
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("discussion_title_img_url","https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/images/%E5%A4%B4%E5%83%8F.png");
+                    User user = userDao.findUserId(follower.getFollower_id());
+                    if(user != null){
+                        jsonObject.put("adminName",user.getUserName());
+                    }
+                    jsonArray.add(jsonObject);
+                }
+            }
         }
 
         System.out.println("JSON语句为："+jsonArray);

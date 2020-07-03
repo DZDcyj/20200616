@@ -20,7 +20,7 @@ public class Create extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("收到微信小程序的请求");
         resp.setContentType("text/html;charset=utf-8");
-        System.out.println("这里是创建响应");
+        System.out.println("这里是创建讨论响应");
         req.setCharacterEncoding("utf-8");
 
         String type = req.getParameter("type");
@@ -42,7 +42,13 @@ public class Create extends HttpServlet {
 
             discussion.setDiscussion_id(1);
             if(discussionList != null) {
-                discussion.setDiscussion_id(discussionList.size() + 1);
+                long discussion_id = 0;
+                for(Discussion discussion1:discussionList){
+                    if(discussion_id <= discussion1.getDiscussion_id()){
+                        discussion_id = discussion1.getDiscussion_id() + 1;
+                    }
+                }
+                discussion.setDiscussion_id(discussion_id);
             }
             User user = userDao.findUserName(req.getParameter("name"));
             if(user != null) {

@@ -32,7 +32,6 @@ public class UserServlet extends HttpServlet {
          * */
 
         if(type.equals("subscribe")){
-            System.out.println("sb");
             UserDaoImpl userDao = new UserDaoImpl();
 
             String subscribe_user_name = req.getParameter("subscribe_user_name");
@@ -49,7 +48,6 @@ public class UserServlet extends HttpServlet {
             Follower follower1 = followerDao.find(follower);
             System.out.println(follower1);
             if(follower1 == null) {
-
                 followerDao.insert(follower);
             }
 

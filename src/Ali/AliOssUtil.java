@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 public class AliOssUtil {
     private String endpoint = "http://oss-cn-beijing.aliyuncs.com";
-    private String accessKeyId = "LTAI4GEo7AuFKspj1KLK5YgH";
-    private String accessKeySecret = "Y3LYTO7JVJjwuBeL3r55gnehfkNeLJ";
+    private String accessKeyId = "1";
+    private String accessKeySecret = "2";
     private String urlFile;
     private OSS ossClient;
     private String objectPath;

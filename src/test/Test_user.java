@@ -19,13 +19,14 @@ public class Test_user {
 
         user.setUserName("橡木盾");
         user.setUserAge(21);
-        user.setUserId(2);
+        user.setUserId(11);
         user.setUserSex("男");
         user.setUserAddress("北京朝阳");
         user.setUser_privilege(1);
         user.setUser_isBan(false);
 
-        userDao.update(user);
+        userDao.delete(user);
+
 
         /*FollowerDaoImpl followerDao = new FollowerDaoImpl();
         Follower follower = new Follower();
@@ -48,8 +49,12 @@ public class Test_user {
         user.setUserAddress("甘肃兰州");
 
         userDao.insert(user);*/
-        Follower follower = new Follower();
+        /*Follower follower = new Follower();
         FollowerDaoImpl followerDao = new FollowerDaoImpl();
+        follower.setUser_id(2);
+        follower.setFollower_id(4);
+        followerDao.delete(follower);*/
+
         /*follower.setUser_id(2);
         follower.setFollower_id(1);
 

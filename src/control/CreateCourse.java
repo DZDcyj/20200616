@@ -35,8 +35,11 @@ public class CreateCourse extends HttpServlet{
 
             if(courseDao.selectAll() != null) {
                List<Course> courseList = courseDao.selectAll();//获取表单值
-                int length = courseList.size();
-                courseId = courseList.get(length - 1).getCourse_id()+1;
+                for(Course course:courseList){
+                    if(courseId <= course.getCourse_id()){
+                        courseId = course.getCourse_id()+1;
+                    }
+                }
             }
             String courseName = request.getParameter("title");
             String courseImgUrl = request.getParameter("img_url");

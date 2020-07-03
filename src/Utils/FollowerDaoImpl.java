@@ -111,7 +111,7 @@ public class FollowerDaoImpl extends DButils implements FollowerDao{
         int flag;
         if(followers != null) {
             for (Follower follower1 : followers) {
-                if (follower1.getUser_id() == follower.getUser_id()) {
+                if ((follower1.getUser_id() == follower.getUser_id() && follower.getFollower_id() == follower1.getFollower_id() )|| follower.getFollower_id() == follower.getUser_id()) {
                     flag = 1;
                     return follower1;
                 }
