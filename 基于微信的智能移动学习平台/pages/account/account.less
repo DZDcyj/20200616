@@ -1,0 +1,116 @@
+page{
+    background-color: #edece8;
+}
+
+.user_info_wrap{
+    height: 50vh;
+    overflow: hidden;
+    background-color: #41be57;
+    position: relative;
+    .user_img_wrap{
+        position: relative;
+        .user_bg{
+            height: 50vh;
+            width: 67vh;
+            filter: blur(10rpx);
+        }
+        .user_info{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 30%;
+            text-align: center;
+                .user_icon{
+                    width: 180rpx;
+                    height: 180rpx;
+                    border-radius: 50%;
+        
+                }
+                .user_name{
+                    color: white;
+                    margin-top: 30rpx;
+                    font-size: 40rpx;
+                }
+            }
+    }
+    .user_btn{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 40%;
+        border: 1rpx solid red ;
+        color: red;
+        font-size: 38rpx;
+        padding: 30rpx;
+        border-radius: 10rpx;
+    }
+}
+.user_content{
+    position: relative;
+    .user_main{
+        padding-bottom: 100rpx;
+        color: #666;
+        position: absolute;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -70rpx;
+
+        .history_wrap{
+            background-color: white;
+            display: flex;
+            navigator{
+                flex: 1;
+                text-align: center;
+                padding: 10rpx 0;
+                .his_num{
+                    color: red;
+                }
+                .his_name{}
+            }
+        }
+        .order_wrap{
+            background-color: white;
+            margin-top: 40rpx;
+            .order_title{
+                padding: 15rpx;
+                border-bottom: 1rpx solid #ccc;
+            }
+            .order_content{
+                display: flex;
+                navigator{
+                    padding: 15rpx 0;
+                    flex: 1;
+                    text-align: center;
+                    
+                    .order_icon{
+                        color: #41be57;
+                        width: 60rpx;
+                        height: 60rpx;
+                        border-radius: 50%;
+                    }
+                    .order_name{}
+                }
+            }
+
+        }
+
+        .app_info_wrap{
+            margin-top: 40rpx;
+            background-color: #fff;
+            .app_info_item{
+                padding: 20rpx;
+                border-bottom: 1rpx solid #ccc;
+            }
+            .app_info_contact{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        .recommend_wrap{
+            margin-top: 40rpx;
+            background-color: #fff;
+            padding: 20rpx;
+        }
+    }
+}

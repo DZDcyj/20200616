@@ -1,0 +1,27 @@
+<!--pages/deletecomment/deletecomment.wxml-->
+<view class="page">
+    <view class="community-comment">
+        <scroll-view class="container"  scroll-y="true">
+        <block wx:for="{{comment}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+            <view class="comment" >
+                <view class="comment_source">
+                    <navigator >
+                        <view data-id="{{item.comment_id}}" bindtap="delete">
+                            <image src="{{item.comment_img_url}}" />
+                            <text >{{item.comment_user_name}}</text>
+                        </view>
+                    </navigator>
+                    <view class="comment_attention">
+                        <button class="attention_btn" bindtap="delete" data-id="{{item.comment_id}}" data-responder="{{item.comment_responder_id}}"> 删除</button>
+                    </view>
+                </view>
+                <view class="comment_content">  
+                    <view class="description">
+                        <text >{{item.comment_content}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+        </scroll-view>
+    </view>
+</view>

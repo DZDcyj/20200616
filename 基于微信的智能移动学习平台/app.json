@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/community/community",
+    "pages/account/account",
+    "pages/comment/comment",
+    "pages/detail/detail",
+    "pages/search/search",
+    "pages/list/list",
+    "pages/logs/logs",
+    "pages/indexs/indexs",
+    "pages/login/login",
+    "pages/videoplayer/videoplayer",
+    "pages/searchresult/searchresult",
+    "pages/modifyInfo/modifyInfo",
+    "pages/UserInformation/UserInformation",
+    "pages/dislaunch/dislaunch",
+    "pages/createcourse/createcourse",
+    "pages/ban/ban",
+    "pages/deletecomment/deletecomment",
+    "pages/deletecourse/deletecourse",
+    "pages/deletediscussion/deletediscussion",
+    "pages/utils/utils",
+    "pages/deletemydiscussion/deletemydiscussion",
+    "pages/deletemycomment/deletemycomment",
+    "pages/deletemycourse/deletemycourse",
+    "pages/unban/unban"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#41be57",
+    "navigationBarTitleText": "移动学习平台",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "",
+    "selectedColor": "",
+    "backgroundColor": "",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homeselect.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区",
+        "iconPath": "images/讨论1.png",
+        "selectedIconPath": "images/讨论2.png"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "text": "我的",
+        "iconPath": "images/account.png",
+        "selectedIconPath": "images/accountselect.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

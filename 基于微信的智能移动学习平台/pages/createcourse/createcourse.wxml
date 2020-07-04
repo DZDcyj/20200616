@@ -1,0 +1,50 @@
+<!--pages/createcourse/createcourse.wxml-->
+<view class='content'>
+  <!--头像及名称-->
+  <view class='nav'>
+    <view class='top'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class='nickname'>
+      <text >创建者：</text>
+      <open-data type="userNickName"></open-data> 
+    </view>
+  </view>
+  <!--输入课程名称-->
+    <view class="course_name">
+      <input  placeholder="课程名称" bindblur="getTitle" bindinput="getContent"></input>
+    </view>
+    
+    <view class="des_text"> 课程描述：</view>
+    <view class="course_description">
+     <input placeholder="简单介绍课程内容" bindblur="getDescription"></input>
+    </view>
+    <!-- 选择图片-->
+    <view class="course_image">
+    <!--  <text >图片URL： </text>  -->
+      
+      <button bindtap="chooseimage" >
+      <image src="../../images/封面.png" />
+      <view class="course_image_up">上传封面</view>
+      
+      </button>
+      <!--<input  placeholder="例如:如何看待xxx" bindblur="getImgUrl"></input>-->
+    </view>
+
+    <!-- 选择视频-->
+    <view class="course_video">
+    <!--  <text>视频URL：</text>  -->
+       
+       <button bindtap="choosevideo" >
+       <image src="../../images/视频.png" />
+       <view class="course_video_up">上传视频</view>
+       
+       </button>
+      <!--<input  placeholder="例如:如何看待xxx" bindblur="getVideoUrl"></input>-->
+    </view>
+    <!--发布按钮 -->
+    <view class="fabu">
+      <button class="save" bindtap="send" type="primary">发布</button>
+    </view>
+</view>
+

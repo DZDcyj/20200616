@@ -1,0 +1,128 @@
+/* pages/createcourse/createcourse.wxss */
+page{
+  background-color: #edece8;
+}
+.content{
+  background-color: #edece8;
+}
+
+
+.top{
+  width: 250rpx;
+  height: 250rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+ 
+}
+.nickname{
+  margin-bottom: 10rpx;
+  margin-top: 10rpx;
+  text-align: center;
+}
+
+.course_name {
+  height: 90rpx;
+  background-color: white;
+  padding: 10rpx;
+  border-radius: 15rpx;
+}
+.course_name input{
+  font-size: 45rpx;
+  height: fit-content;
+  padding: 15rpx;
+}
+.des_text{
+  padding: 10rpx;
+  margin-top: 10rpx;
+}
+.course_description{
+  margin-top: 10rpx;
+  height: 260rpx;
+  background-color: white;
+  padding: 10rpx;
+  border-radius: 15rpx;
+}
+
+.course_image{
+  margin-top: 10rpx;
+}
+
+.course_image button{
+  width: 50%;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  background-color: white;
+  justify-content: space-around;
+  display: flex;
+}
+.course_image button image{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  background-color: white;
+  padding-top: 10rpx;
+  flex: 1;
+}
+.course_image_up{
+  flex: 5;
+}
+.course_video{
+  margin-top: 10rpx;
+}
+
+.course_video button{
+  width: 50%;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  background-color: white;
+  justify-content: space-around;
+  display: flex;
+}
+.course_video button image{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  background-color: white;
+  padding-top: 10rpx;
+  flex: 1;
+}
+.course_video_up{
+  flex: 5;
+  
+}
+.fabu{
+  margin-bottom: 10rpx;
+}
+.left{
+display: flex;
+justify-content: flex-start;
+flex-grow: 1;
+}
+.right{
+display: flex;
+justify-content: flex-end;
+flex-grow: 1;
+color: #ccc;
+margin-right: 20rpx;
+}
+.line{
+  width:100%;
+
+  height:2rpx;
+
+  background:#aaa;
+}
+.textarea{
+  justify-content: flex-end;
+}
+.save{
+  width: 70%;
+  background-color: 093;
+  position: fixed;
+  bottom: 20rpx;
+  left: 15%;
+}
+
+

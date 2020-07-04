@@ -1,0 +1,44 @@
+<!--pages/home/home.wxml-->
+<view class="home" >
+    <view class="line"></view>
+    <scroll-view class="container"  scroll-y="true">
+      <view class="search" >
+            <view class="search_left" >
+                <image src="../../images/搜索.png"></image>
+                <input placeholder="搜索课程" class="search_left_placeholder" bindinput="change">
+                </input>
+            </view>
+            <view class="search_right" bindtap="change">
+                    <image src="../../images/开始搜索.png" ></image>
+            </view>
+      </view>
+      <text class="row">\n</text>
+      <view class="slides">
+        <swiper autoplay indicator-dots circular>
+          <swiper-item wx:for="{{rows}}" wx:key="key">
+            <navigator url="/pages/videoplayer/videoplayer?id={{item.course_id}}" open-type="redirect" hover-class="other-navigator-hover" >
+              <image  class="course_item_info_image" src="{{item.course_image_url}}" />
+            </navigator>
+          </swiper-item>
+          </swiper>
+        </view>
+      
+
+
+      <block wx:for="{{arrays}}" wx:key="key">
+        <view class="class_source" >
+        <navigator  url="/pages/videoplayer/videoplayer?id={{item.course_id}}"  hover-class="other-navigator-hover">
+          <view class="course_item_info">
+          <image src="{{item.course_image_url}}" />
+          <view class="course_recomment_text">
+            <view class="course_recomment_name">{{item.course_name}}</view>
+            <view class="course_recomment_description" >{{item.course_description}}</view>
+          </view>
+        </view>
+      </navigator>
+      </view>
+    </block>
+    </scroll-view>
+  </view>
+
+

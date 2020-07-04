@@ -1,0 +1,45 @@
+<!--pages/videoplayer/videoplayer.wxml-->
+<view class="videoplayer">
+  <view class="video_info">
+  <scroll-view class="container"  scroll-y="true">
+      <!--视频-->
+      <video src="{{arrays[0].course_video_url}}" style="video"></video>
+      <view class="video_below">
+        <!--课程名称-->
+        <view class="course_name_info">
+          <view class="course_name_title">课程名：</view>
+          <view class="course_name">{{arrays[0].course_name}}</view>
+          <button type="primary" bindtap="clickAdd" data-course_id="{{arrays[0].course_id}}">加入</button>
+        </view>
+        <!--课程简介-->
+        <view class="course_brief_info">
+          <view class="course_brief" >课程简介</view>
+          <text class="course_brief_content" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{arrays[0].course_description}}</text>
+        </view>
+
+        <!--为您推荐-->
+        <view class="recommend">
+          <view class="recommend_text">推荐课程</view>
+          <block wx:for="{{arrays}}" >
+              <view class="class_source" wx:if="{{index!=0}}">
+                  <navigator url="/pages/videoplayer/videoplayer?id={{item.course_id}}"  hover-class="other-navigator-hover" open-type="redirect" >
+                    <view class="course_item_info">
+                      <image src="{{item.course_image_url}}" />
+                      <view class="course_recomment_text">
+                        <view class="course_recomment_name">{{item.course_name}}</view>
+                        <view class="course_recomment_description" >{{item.course_description}}</view>
+                      </view>
+                    </view>
+                  </navigator>
+              </view>
+          </block>
+       </view>
+      </view>
+      </scroll-view>
+  </view>
+</view>
+
+
+
+
+

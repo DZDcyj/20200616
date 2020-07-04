@@ -1,0 +1,23 @@
+<!--pages/deletemycourse/deletemycourse.wxml-->
+<view class="community" >
+    <view class="line"></view>
+    <scroll-view class="container"  scroll-y="true">
+      <text class="row">\n</text>
+    <view wx:for="{{arrays}}">
+    <navigator url="/pages/account/account">
+    <view class="class_item">
+      <view class="class_source">
+        <navigator >
+          <image src="{{item.course_image_url}}" />
+          <text >{{item.course_name}}</text>
+        </navigator>
+        <view class="comment_attention">
+            <button class="attention_btn" bindtap="delete" data-id="{{item.course_id}}"> 删除</button>
+        </view>
+      </view>
+    </view>
+    </navigator>
+    </view>
+    </scroll-view>
+  </view>
+

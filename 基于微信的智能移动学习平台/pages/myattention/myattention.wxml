@@ -1,0 +1,29 @@
+<view class="pages">
+    <view class="tab">
+        <view bindtap="activeTab" class="tab_item active" >我的关注</view>
+        <view bindtap="activeTab" class="tab_item {{currentIndexNav===2?'active':''}}" >我的粉丝</view>
+    </view>
+     <view class="search" >
+            <view class="search_left" >
+                <image src="../../images/搜索.png"></image>
+                <input placeholder="搜索我的关注" class="search_left_placeholder" bindinput="change">
+                </input>
+            </view>
+      </view>
+    <scroll-view class="container"  scroll-y="true">
+        <block wx:for="{{follower}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+        <view class="questioner_item">
+            <view class="questioner_source">
+                <navigator >
+                    <view >
+                        <image src="{{item.discussion_title_img_url}}" />
+                        <text >{{item.adminName}}</text>
+                    </view>
+                </navigator>
+                <button class="have_attention"> 已关注</button>
+            </view>
+            <view class="user_des">这个人很懒，什么都没留下~</view>
+        </view>      
+        </block>
+    </scroll-view>
+</view>

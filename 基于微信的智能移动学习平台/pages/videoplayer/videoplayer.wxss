@@ -1,0 +1,117 @@
+/* pages/videoplayer/videoplayer.wxss */
+video{
+  width:100%;
+}
+.line{
+  width:100%;
+  height:2rpx;
+  background:#aaa;
+}
+
+.videoplayer{
+  width: 100%;
+  height: 40%;
+  color: #666;
+  background-color:#edece8;
+}
+
+.video_info{
+  margin-top: 10rpx;
+}
+.video_below{
+  background-color: white;
+  
+}
+.course_name_info{
+  display: flex;
+  padding: 10rpx;
+  border-bottom: 1rpx solid #ccc;
+  
+}
+
+.course_name_title{
+  font-size: 38rpx;
+  margin-top: 2rpx;
+  color: black;
+}
+.course_name{
+  font-size: 40rpx;
+  color: black;
+  font-weight: bold;
+}
+.course_brief_info{
+  margin-top: 10rpx;
+  padding: 10rpx;
+
+}
+
+.course_brief{
+  font-size: 30rpx;
+}
+.course_brief_content{
+  margin-top: 5rpx;
+  font-size: 30rpx;
+}
+
+.recommend{
+  margin-top: 10rpx;
+  padding: 8rpx;
+  margin-bottom: 30rpx;
+}
+.recommend_text{
+  height: 40rpx;
+  margin-bottom: 10rpx;
+  color: black;
+}
+
+.class_source {
+  justify-content: space-between;
+  height: 130rpx;
+  padding-left: 15rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  background-color: #fff;
+  margin-top: 10rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+.course_item_info{
+  display: flex;
+}
+.course_item_info image {
+  flex: 3;
+  width: 170rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  margin-top: 5rpx;
+  border-radius: 5rpx;
+}
+.course_recomment_text{
+  flex: 7;
+}
+.course_recomment_name{
+  font-size: 35rpx;
+  color: black;
+}
+.course_recomment_description{
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.rank{
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-right: 20rpx;
+}
+.course_name_info button{
+  font-size: 30rpx;
+  height: 55rpx;
+  text-align: center;
+  bottom: 0rpx;
+  line-height: 50rpx;
+  right: -38rpx;
+}

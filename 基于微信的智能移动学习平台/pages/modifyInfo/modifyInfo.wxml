@@ -1,0 +1,41 @@
+<!--pages/myinfo/myinfo.wxml-->
+<!-- <text>pages/myinfo/myinfo.wxml</text> -->
+  <text>\n</text>
+    <text>\n</text>
+<view class='content'>
+  <view class='nav'>
+    <view class='top'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class='nickname'>
+      <open-data type="userNickName"></open-data> 
+    </view>
+  </view>
+
+    <view class='item'>
+      <text class='left'>ID：</text>
+      <input class="right" placeholder="{{arrays[0].userId}}" disabled="true"></input>
+    </view>
+    <view class='item'>
+      <text class='left'>昵称：</text>
+      <input class="right" placeholder="{{arrays[0].userName}}" bindblur="getName"></input>
+    </view>
+    <view class='item'>
+     <text class='left'> 年龄：</text>
+     <input class="right" placeholder="{{arrays[0].userAge}}" bindblur="getAge"></input>
+    </view>
+    <view class='item'>
+     <text class='left'> 性别：</text>
+     <input class="right" placeholder="{{arrays[0].userSex}}" bindblur="getSex"></input>
+    </view>
+    <view class='item'>
+     <text class='left'> 地址：</text>
+     <input class='right' placeholder="{{arrays[0].userAddress}}" bindblur="getAddress"></input>
+    </view>
+    <view class='item'>
+     <text class='left'> 推荐策略：</text>
+     <input class='right' placeholder="自动/不自动"></input>
+    </view>
+    <button class="save" bindtap="saveInfo">保存</button>
+</view>
+

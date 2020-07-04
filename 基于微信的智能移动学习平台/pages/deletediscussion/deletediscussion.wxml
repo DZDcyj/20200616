@@ -1,0 +1,37 @@
+<view class="page">
+    <view class="community">
+        <scroll-view class="container"  scroll-y="true">
+        <block wx:for="{{questioner}}" wx:for-index="idx" wx:key="key" wx:for-item="item">
+        <view class="questioner_item">
+            <view class="questioner_source">
+                <navigator >
+                    <view class="title">
+                        <image src="{{item.discussion_title_img_url}}" />
+                        <text >{{item.adminName}}</text>
+                    </view>
+                </navigator>
+                <view class="questioner_attention">
+                    <button class="attention_btn" bindtap="delete" data-id="{{item.discussion_id}}"> 删除</button>
+                </view>
+
+                <view class="questioner_comment">
+                <view >
+                    <image src="{{item.comment_image}}" />
+                </view>
+            </view>
+            </view>
+            <view class="questioner_content">
+             <navigator url="/pages/community-comment/community-comment?question_id={{item.discussion_id}}">
+                <view class="question">
+                    {{item.discussion_name}}
+                </view>
+                <view class="description">
+                    <text >{{item.discussion_content}}</text>
+                </view>
+                </navigator>    
+            </view>
+        </view>      
+        </block>
+        </scroll-view>
+    </view>  
+</view>
