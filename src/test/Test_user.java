@@ -19,13 +19,13 @@ public class Test_user {
 
         user.setUserName("橡木盾");
         user.setUserAge(21);
-        user.setUserId(11);
+        user.setUserId(2);
         user.setUserSex("男");
         user.setUserAddress("北京朝阳");
         user.setUser_privilege(1);
         user.setUser_isBan(false);
 
-        userDao.delete(user);
+        userDao.update(user);
 
 
         /*FollowerDaoImpl followerDao = new FollowerDaoImpl();

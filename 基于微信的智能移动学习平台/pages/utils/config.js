@@ -2,8 +2,8 @@ var fileHost = "https://shixunimageandvideo.oss-cn-beijing.aliyuncs.com/";//你�
 var config = {
    //aliyun OSS config
    uploadImageUrl: `${fileHost}`, // 默认存在根目录，可根据需求改
-   AccessKeySecret: 'Y3LYTO7JVJjwuBeL3r55gnehfkNeLJ',        // AccessKeySecret 去你的阿里云上控制台上找
-   OSSAccessKeyId: 'LTAI4GEo7AuFKspj1KLK5YgH',         // AccessKeyId 去你的阿里云上控制台上找
+   AccessKeySecret: '111',        // AccessKeySecret 去你的阿里云上控制台上找
+   OSSAccessKeyId: '11',         // AccessKeyId 去你的阿里云上控制台上找
    timeout: 87600 //这个是上传文件时Policy的失效时间
 };
 module.exports = config
